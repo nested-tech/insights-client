@@ -1,8 +1,12 @@
 // @flow
 
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import { ApolloProvider } from "react-apollo";
+
+import logo from "./nested.png";
 import "./App.css";
+
+import { client } from "./Apollo";
 
 type Props = {};
 
@@ -12,11 +16,13 @@ class App extends Component<Props> {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Nested Insights 🚀</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <ApolloProvider client={client}>
+          <div>
+            <p className="App-intro">It begins...</p>
+          </div>
+        </ApolloProvider>
       </div>
     );
   }
