@@ -7,21 +7,24 @@ import logo from "./nested.png";
 import "./App.css";
 
 import { client } from "./Apollo";
+import { Addresses } from "./Addresses";
 
 type Props = {};
 
 class App extends Component<Props> {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Nested Insights 🚀</h1>
+      <div className="app">
+        <header className="header">
+          <img src={logo} className="logo" alt="logo" />
+          <h1 className="App-title">
+            <span role="img" aria-label="rocket-emoji">
+              🦄💦
+            </span>
+          </h1>
         </header>
         <ApolloProvider client={client}>
-          <div>
-            <p className="App-intro">It begins...</p>
-          </div>
+          <Addresses />
         </ApolloProvider>
       </div>
     );
