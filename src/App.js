@@ -8,6 +8,7 @@ import "./App.css";
 
 import { client } from "./Apollo";
 import { Addresses } from "./Addresses";
+import { LandRegData } from "./LandRegData";
 
 type Props = {};
 
@@ -25,6 +26,7 @@ class App extends Component<Props> {
         </header>
         <ApolloProvider client={client}>
           <Addresses />
+          <LandRegData addressId={"5c08ace2-9ee2-11e8-93eb-7a0074603401"} />
         </ApolloProvider>
       </div>
     );
