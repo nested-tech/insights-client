@@ -23,7 +23,7 @@ export const Addresses = (): Element<any> => (
 
       return (
         <div>
-          <h3>Addresses</h3>
+          <b>Addresses: </b>
           <ul>
             {data.getAddresses.map(({ postcode, houseNumber }) => (
               <li key={postcode}>

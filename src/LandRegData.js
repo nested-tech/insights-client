@@ -23,8 +23,10 @@ export const LandRegData = ({ addressId }: { addressId: id }): Element<any> => (
 
       return (
         <div>
-          <h3>Average Time to Sold</h3>
-          <div>{data.landRegData[0].averageTimeToSold} days</div>
+          <span>
+            <b>Average Time to Sold: </b>
+          </span>
+          <span>{data.landRegData[0].averageTimeToSold} days</span>
         </div>
       );
     }}

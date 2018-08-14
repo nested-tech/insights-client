@@ -19,12 +19,9 @@ class App extends Component<Props> {
       <div className="app">
         <header className="header">
           <img src={logo} className="logo" alt="logo" />
-          <h1 className="App-title">
-            <span role="img" aria-label="rocket-emoji">
-              🦄💦
-            </span>
-          </h1>
+          <div className="title" />
         </header>
+        <div className="App-title" />
         <ApolloProvider client={client}>
           <Status />
           <Addresses />
