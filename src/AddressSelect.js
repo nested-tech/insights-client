@@ -2,23 +2,33 @@
 
 import React, { Component } from "react";
 import Select from "react-select";
+import type { Element } from "react";
+import { Query } from "react-apollo";
+
+import gql from "graphql-tag";
 
 import type { Address } from "./Address";
+
+const ADDRESSES = gql`
+  query addresses {
+    getAddresses {
+      id
+      postcode
+      houseNumber
+    }
+  }
+`;
 
 type Option = {
   value: string,
   label: string,
 };
 
-type Props = {
-  addresses: Address[],
-};
-
 type State = {
   selectedOption: ?Option,
 };
 
-class AddressSelect extends Component<Props, State> {
+class AddressSelect extends Component<{}, State> {
   state = {
     selectedOption: null,
   };
@@ -37,21 +47,37 @@ class AddressSelect extends Component<Props, State> {
     this.setState({ selectedOption });
   };
 
-  render() {
+  render(): Element<Query> {
     const {
       asOptions,
       handleChange,
-      props: { addresses },
       state: { selectedOption },
     } = this;
 
     return (
-      <Select
-        placeholder="Address"
-        value={selectedOption}
-        onChange={handleChange(addresses)}
-        options={asOptions(addresses)}
-      />
+      <Query query={ADDRESSES}>
+        {({
+          loading,
+          error,
+          data: { getAddresses: addresses },
+        }: {
+          loading: boolean,
+          error: Error,
+          data: { getAddresses: Address[] },
+        }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>Could not get addresses :(</p>;
+
+          return (
+            <Select
+              placeholder="Address"
+              value={selectedOption}
+              onChange={handleChange(addresses)}
+              options={asOptions(addresses)}
+            />
+          );
+        }}
+      </Query>
     );
   }
 }

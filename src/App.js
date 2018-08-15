@@ -8,7 +8,7 @@ import logo from "./nested.png";
 import "./App.css";
 
 import { client } from "./Apollo";
-import { Addresses } from "./Addresses";
+import { AddressSelect } from "./AddressSelect";
 import { LandRegData } from "./LandRegData";
 import { Status } from "./Status";
 
@@ -23,7 +23,7 @@ class App extends Component<{}> {
         <div className="App-title" />
         <ApolloProvider client={client}>
           <Status />
-          <Addresses />
+          <AddressSelect />
           <LandRegData addressId={"5c08ace2-9ee2-11e8-93eb-7a0074603401"} />
         </ApolloProvider>
       </div>
