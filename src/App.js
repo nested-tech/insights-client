@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
+import type { Element } from "react";
 import { ApolloProvider } from "react-apollo";
 
 import logo from "./nested.png";
@@ -11,10 +12,8 @@ import { Addresses } from "./Addresses";
 import { LandRegData } from "./LandRegData";
 import { Status } from "./Status";
 
-type Props = {};
-
-class App extends Component<Props> {
-  render() {
+class App extends Component<{}> {
+  render(): Element<any> {
     return (
       <div className="app">
         <header className="header">

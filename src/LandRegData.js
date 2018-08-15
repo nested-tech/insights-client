@@ -3,6 +3,7 @@
 import React from "react";
 import type { Element } from "react";
 import { Query } from "react-apollo";
+
 import gql from "graphql-tag";
 
 type id = number | string;
@@ -15,7 +16,11 @@ const AVERAGE_TIME_TO_SOLD = gql`
   }
 `;
 
-export const LandRegData = ({ addressId }: { addressId: id }): Element<any> => (
+export const LandRegData = ({
+  addressId,
+}: {
+  addressId: id,
+}): Element<Query> => (
   <Query query={AVERAGE_TIME_TO_SOLD} variables={{ addressId }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;

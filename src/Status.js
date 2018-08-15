@@ -3,6 +3,7 @@
 import React from "react";
 import type { Element } from "react";
 import { Query } from "react-apollo";
+
 import gql from "graphql-tag";
 
 const STATUS = gql`
@@ -11,19 +12,19 @@ const STATUS = gql`
   }
 `;
 
-const UnicornSploosh = () => (
+const UnicornSploosh = (): Element<"span"> => (
   <span role="img" aria-label="unicorn-sploosh">
     🦄💦
   </span>
 );
 
-const NoEntry = () => (
+const NoEntry = (): Element<"span"> => (
   <span role="img" aria-label="no-entry">
     ⛔️
   </span>
 );
 
-export const Status = (): Element<any> => (
+export const Status = (): Element<Query> => (
   <Query query={STATUS}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;

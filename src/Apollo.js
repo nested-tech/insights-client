@@ -14,7 +14,6 @@ const onError = ({ graphQLErrors, networkError }) => {
 };
 
 export const client = new ApolloClient({
-  // uri: "https://api.github.com/graphql",
   uri: "http://nested.test:4000/api",
   onError,
 });
