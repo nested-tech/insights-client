@@ -26,7 +26,15 @@ const NoEntry = (): Element<"span"> => (
 
 export const Status = (): Element<Query> => (
   <Query query={STATUS}>
-    {({ loading, error, data }) => {
+    {({
+      loading,
+      error,
+      data,
+    }: {
+      loading: boolean,
+      error: Error,
+      data: { isThisThingOn: boolean },
+    }) => {
       if (loading) return <p>Loading...</p>;
 
       return (
