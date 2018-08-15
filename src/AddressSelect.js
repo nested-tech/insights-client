@@ -65,23 +65,25 @@ class AddressSelect extends Component<Props, State> {
         {({
           loading,
           error,
-          data: { getAddresses: addresses },
+          data,
         }: {
           loading: boolean,
           error: Error,
-          data: { getAddresses: Address[] },
+          data: ?{ getAddresses: Address[] },
         }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Could not get addresses :(</p>;
-
-          return (
-            <Select
-              placeholder="Address"
-              value={selectedOption}
-              onChange={handleChange(addresses)}
-              options={asOptions(addresses)}
-            />
-          );
+          if (data) {
+            const { getAddresses: addresses } = data;
+            return (
+              <Select
+                placeholder="Address"
+                value={selectedOption}
+                onChange={handleChange(addresses)}
+                options={asOptions(addresses)}
+              />
+            );
+          }
         }}
       </Query>
     );
