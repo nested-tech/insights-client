@@ -6,7 +6,8 @@ import { Query } from "react-apollo";
 
 import gql from "graphql-tag";
 
-type id = number | string;
+import type { Address } from "./Address";
+
 type LandRegDatum = {
   averageTimeToSold: number,
 };
@@ -20,11 +21,11 @@ const AVERAGE_TIME_TO_SOLD = gql`
 `;
 
 export const LandRegData = ({
-  addressId,
+  address: { id },
 }: {
-  addressId: id,
+  address: Address,
 }): Element<Query> => (
-  <Query query={AVERAGE_TIME_TO_SOLD} variables={{ addressId }}>
+  <Query query={AVERAGE_TIME_TO_SOLD} variables={{ addressId: id }}>
     {({
       loading,
       error,
@@ -42,12 +43,12 @@ export const LandRegData = ({
         .reduce((time, acc) => (time + acc) / 2);
 
       return (
-        <div>
+        <p>
           <span>
             <b>Average Time to Sold: </b>
           </span>
           <span>{averageTimeToSold} days</span>
-        </div>
+        </p>
       );
     }}
   </Query>

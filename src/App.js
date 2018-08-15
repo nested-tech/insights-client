@@ -12,8 +12,27 @@ import { AddressSelect } from "./AddressSelect";
 import { LandRegData } from "./LandRegData";
 import { Status } from "./Status";
 
-class App extends Component<{}> {
+import type { Address } from "./Address";
+
+type State = {
+  address: ?Address,
+};
+
+class App extends Component<{}, State> {
+  state = {
+    address: null,
+  };
+
+  setAddress = (address: Address): void => {
+    this.setState({ address });
+  };
+
   render(): Element<any> {
+    const {
+      state: { address },
+      setAddress,
+    }: { state: State, setAddress: (Address) => void } = this;
+
     return (
       <div className="app">
         <header className="header">
@@ -23,8 +42,8 @@ class App extends Component<{}> {
         <div className="App-title" />
         <ApolloProvider client={client}>
           <Status />
-          <AddressSelect />
-          <LandRegData addressId={"5c08ace2-9ee2-11e8-93eb-7a0074603401"} />
+          <AddressSelect setAddress={setAddress} />
+          {address && <LandRegData address={address} />}
         </ApolloProvider>
       </div>
     );

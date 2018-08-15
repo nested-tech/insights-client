@@ -24,11 +24,15 @@ type Option = {
   label: string,
 };
 
+type Props = {
+  setAddress: (Address) => void,
+};
+
 type State = {
   selectedOption: ?Option,
 };
 
-class AddressSelect extends Component<{}, State> {
+class AddressSelect extends Component<Props, State> {
   state = {
     selectedOption: null,
   };
@@ -42,7 +46,9 @@ class AddressSelect extends Component<{}, State> {
   handleChange = (addresses: Address[]) => (selectedOption: Option) => {
     const address = addresses.find(({ id }) => id === selectedOption.value);
 
-    console.log(`Address:`, address);
+    if (address) {
+      this.props.setAddress(address);
+    }
 
     this.setState({ selectedOption });
   };
